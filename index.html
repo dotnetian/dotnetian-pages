@@ -1,0 +1,68 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div>
+    <button class="button-bubble background-fade-out">Fade All</button>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".button-bubble").hover(function () {
+            $(this).addClass("hovered");
+        });
+    });
+</script>
+
+<style>
+    .button-bubble {
+        width: 100px;
+        height: 33px;
+        margin: 1rem;
+        box-sizing: content-box;
+        background-color: #f5f5f5;
+        border: var(--bwidth) solid transparent;
+        border-radius: 1000pt;
+        --bwidth: 1.25pt;
+
+        outline: 0px solid transparent;
+        outline-offset: calc(-1 * var(--bwidth));
+    }
+
+    .button-bubble.bubble-hovered:not(:hover) {
+        animation: border-fade-out 300ms forwards;
+    }
+
+    .button-bubble.bubble-hovered:hover {
+        animation: border-fade-in 300ms forwards;
+    }
+
+    @keyframes border-fade-out {
+        0% {
+            border-color: #dcdcdc;
+        }
+
+        100% {
+            /*grow the outline width to cover the border*/
+            outline-width: var(--bwidth);
+            /*Change the border color as well makes the transition looks smoother*/
+            outline-color: white;
+            border-color: transparent;
+        }
+    }
+
+    @keyframes border-fade-in {
+        0% {
+            outline-color: white;
+            border-color: transparent;
+        }
+
+        100% {
+            outline-color: transparent;
+            border-color: #dcdcdc;
+        }
+    }
+
+    .background-fade-out:not(:hover) {
+        background-color: white;
+        transition: background-color 200ms;
+    }
+</style>
